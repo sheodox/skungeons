@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {
+      "model": "skungeons:pedestal"
+    },
+    "inventory": {
+      "model": "skungeons:pedestal",
+      "transform": "forge:default-block"
+    }
+  }
+}
