@@ -18,6 +18,7 @@ public class Skungeon {
     private final int skungeonYBase = 200;
     private final int skungeonSize = 30;
     private final int skungeonHeight = 7;
+    private final int skungeonHeightVariation = 40;
     //block the majority of the structure is, to be mostly unbreakable and less easily cheesed
     private final IBlockState baseBlock = Blocks.OBSIDIAN.getDefaultState();
     private final SkungeonTier tier;
@@ -54,9 +55,12 @@ public class Skungeon {
         System.out.println("generating");
         System.out.println("x: " + chunkXStart + " z: " + chunkZStart);
 
+        //give some variation to the height
+        int yBase = skungeonYBase - random.nextInt(skungeonHeightVariation);
+
         this.random = random;
         //altar
-        BlockPos altarPos = new BlockPos(chunkXStart + (skungeonSize / 2), skungeonYBase + 1, chunkZStart + (skungeonSize / 2));
+        BlockPos altarPos = new BlockPos(chunkXStart + (skungeonSize / 2), yBase + 1, chunkZStart + (skungeonSize / 2));
         world.setBlockState(altarPos, ModBlocks.pedestal.getDefaultState());
         TileEntityAltar tile = (TileEntityAltar) world.getTileEntity(altarPos);
         tile.setTier(tier.tierName);
@@ -64,31 +68,31 @@ public class Skungeon {
 
         //walls
         spawnBlockPlane(world, tier.decorationBlock, false,
-                new BlockPos(chunkXStart, skungeonYBase, chunkZStart),
-                new BlockPos(chunkXStart + skungeonSize, skungeonYBase + skungeonHeight, chunkZStart + 1)
+                new BlockPos(chunkXStart, yBase, chunkZStart),
+                new BlockPos(chunkXStart + skungeonSize, yBase + skungeonHeight, chunkZStart + 1)
         );
         spawnBlockPlane(world, tier.decorationBlock, false,
-                new BlockPos(chunkXStart, skungeonYBase, chunkZStart + skungeonSize - 1),
-                new BlockPos(chunkXStart + skungeonSize, skungeonYBase + skungeonHeight, chunkZStart + skungeonSize)
+                new BlockPos(chunkXStart, yBase, chunkZStart + skungeonSize - 1),
+                new BlockPos(chunkXStart + skungeonSize, yBase + skungeonHeight, chunkZStart + skungeonSize)
         );
         spawnBlockPlane(world, tier.decorationBlock, false,
-                new BlockPos(chunkXStart, skungeonYBase, chunkZStart),
-                new BlockPos(chunkXStart + 1, skungeonYBase + skungeonHeight, chunkZStart + skungeonSize)
+                new BlockPos(chunkXStart, yBase, chunkZStart),
+                new BlockPos(chunkXStart + 1, yBase + skungeonHeight, chunkZStart + skungeonSize)
         );
         spawnBlockPlane(world, tier.decorationBlock, false,
-                new BlockPos(chunkXStart + skungeonSize - 1, skungeonYBase, chunkZStart),
-                new BlockPos(chunkXStart + skungeonSize, skungeonYBase + skungeonHeight, chunkZStart + skungeonSize)
+                new BlockPos(chunkXStart + skungeonSize - 1, yBase, chunkZStart),
+                new BlockPos(chunkXStart + skungeonSize, yBase + skungeonHeight, chunkZStart + skungeonSize)
         );
 
         //floor
         spawnBlockPlane(world, baseBlock, false,
-                new BlockPos(chunkXStart, skungeonYBase, chunkZStart),
-                new BlockPos(chunkXStart + skungeonSize, skungeonYBase + 1, chunkZStart + skungeonSize)
+                new BlockPos(chunkXStart, yBase, chunkZStart),
+                new BlockPos(chunkXStart + skungeonSize, yBase + 1, chunkZStart + skungeonSize)
         );
         //ceiling
         spawnBlockPlane(world, baseBlock, true,
-                new BlockPos(chunkXStart, skungeonYBase + skungeonHeight, chunkZStart),
-                new BlockPos(chunkXStart + skungeonSize, skungeonYBase + skungeonHeight + 1, chunkZStart + skungeonSize)
+                new BlockPos(chunkXStart, yBase + skungeonHeight, chunkZStart),
+                new BlockPos(chunkXStart + skungeonSize, yBase + skungeonHeight + 1, chunkZStart + skungeonSize)
         );
     }
 }
