@@ -2,7 +2,7 @@
     "modid": "skungeons",
     "name": "Skungeons",
     "description": "Sky dungeons, all adventure like!",
-    "version": "0.0.0.2",
+    "version": "0.0.3",
     "mcversion": "1.11.2",
     "logoFile": "assets/examplemod/textures/logo.png",
     "url": "minecraftforge.net/",

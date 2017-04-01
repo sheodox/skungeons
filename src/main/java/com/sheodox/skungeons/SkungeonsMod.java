@@ -30,7 +30,7 @@ public class SkungeonsMod {
 
     public static final String modId = "skungeons";
     public static final String name = "SkungeonsMod";
-    public static final String version = "0.0.2";
+    public static final String version = "0.0.3";
 
     public static final PlaygroundTab creativeTab = new PlaygroundTab();
 
