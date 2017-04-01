@@ -34,9 +34,6 @@ public class SkungeonsMod {
 
     public static final PlaygroundTab creativeTab = new PlaygroundTab();
 
-    public static final Item.ToolMaterial copperToolMaterial = EnumHelper.addToolMaterial("COPPER", 2, 500, 6, 2, 14);
-    public static final ItemArmor.ArmorMaterial copperArmorMaterial = EnumHelper.addArmorMaterial("COPPER", modId + ":copper", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0f);
-
     @Mod.Instance(modId)
     public static SkungeonsMod instance;
 
