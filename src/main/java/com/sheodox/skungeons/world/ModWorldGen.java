@@ -17,9 +17,17 @@ public class ModWorldGen implements IWorldGenerator {
     private final int willSpawnMax = 100;
 
     private final SkungeonTier woodTier = new SkungeonTier(EnumDyeColor.BROWN, "wood");
-    private final SkungeonTier ironTier = new SkungeonTier(EnumDyeColor.GRAY, "iron");
+    private final SkungeonTier stoneTier = new SkungeonTier(EnumDyeColor.GRAY, "stone");
+    private final SkungeonTier coalTier = new SkungeonTier(EnumDyeColor.BLACK, "coal");
+    private final SkungeonTier ironTier = new SkungeonTier(EnumDyeColor.SILVER, "iron");
     private final SkungeonTier goldTier = new SkungeonTier(EnumDyeColor.YELLOW, "gold");
     private final SkungeonTier diamondTier = new SkungeonTier(EnumDyeColor.LIME, "diamond");
+    private final int woodWeight = 200;
+    private final int stoneWeight = 200;
+    private final int coalWeight = 200;
+    private final int ironWeight = 100;
+    private final int goldWeight = 100;
+    private final int diamondWeight = 50;
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
@@ -31,16 +39,21 @@ public class ModWorldGen implements IWorldGenerator {
     }
 
     private SkungeonTier getTier(Random random) {
-        int tier = random.nextInt(1000);
-        if (tier < 150) {
-            return diamondTier;
+        int[] weights = {woodWeight, stoneWeight, coalWeight, ironWeight, goldWeight, diamondWeight};
+        SkungeonTier[] tiers = {woodTier, stoneTier, coalTier, ironTier, goldTier, diamondTier};
+        int weightTotal = 0;
+        for (int weight : weights) {
+            weightTotal += weight;
         }
-        else if (tier < 450) {
-            return goldTier;
+
+        int pick = random.nextInt(weightTotal - 1);
+        for (int i = 0; i < weights.length; i++) {
+            if (pick < weights[i]) {
+                return tiers[i];
+            }
+            pick -= weights[i];
         }
-        else if (tier < 700) {
-            return ironTier;
-        }
+        //should never get here, default to wood if it does
         return woodTier;
     }
 }
