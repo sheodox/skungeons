@@ -14,7 +14,7 @@ import java.util.Random;
  * Created by sheodox on 2017/03/19.
  */
 public class ModWorldGen implements IWorldGenerator {
-    private final int willSpawnMax = 100;
+    private final int willSpawnMax = 300;
 
     private final SkungeonTier woodTier = new SkungeonTier(EnumDyeColor.BROWN, "wood");
     private final SkungeonTier stoneTier = new SkungeonTier(EnumDyeColor.GRAY, "stone");
